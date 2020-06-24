@@ -1,7 +1,9 @@
+set nocompatible
+" treat header files as c++ files for syntax highlighting
+autocmd BufEnter *.hpp,*.h :setlocal filetype=cpp
 """""""""""""""""""""""""""""""""""""
 " PLUGIN
 """"""""""""""""""""""""""""""""""""""
-set nocompatible
 filetype off
 set rtp+=~/.config/nvim/bundle/Vundle.vim " set runtime path
 call vundle#begin()
@@ -14,6 +16,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'scrooloose/syntastic'
 
 call vundle#end()
 filetype plugin indent on
@@ -98,8 +102,19 @@ function! s:show_documentation()
 endfunction
 """""""""""""""""""""""""""""""""""""""
 "" tagbar
-autocmd FileType c,cpp nested :TagbarOpen " open tagbar only for specific filetypes
+" autocmd FileType c,cpp nested :TagbarOpen " open tagbar only for specific filetypes
 nmap <F8> :TagbarToggle<CR>
+"""""""""""""""""""""""""""""""""""""""
+"" ctrlp.vim
+" when the project is too big, ctrlp fails finding all documents
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=100
+" set this to 1 to set searching by filename (as opposed to full path) as the default
+let g:ctrlp_by_filename=1
+" set this to 1 to set regexp search as the default
+let g:ctrlp_regexp=1
+" when opening a file, if it's already open in a window somewhere, CtrlP will try to jump to it instead of opening a new instance
+let g:ctrlp_switch_buffer='Et'
 """""""""""""""""""""""""""""""""""""""
 "" vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -107,13 +122,16 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 """""""""""""""""""""""""""""""""""""""
+"" syntastic
+"""""""""""""""""""""""""""""""""""""""
 " COLORS AND FONTS
 """""""""""""""""""""""""""""""""""""""
-syntax enable
+syntax on
 set t_Co=256
 set background=dark
 set termguicolors
 colorscheme hackerman
+" colorscheme archman
 """""""""""""""""""""""""""""""""""""""
 " GENERAL EDITING
 """""""""""""""""""""""""""""""""""""""
@@ -135,9 +153,13 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.c,*.cpp,*.h,*.hpp :call CleanExtraSpaces()
-endif
+"if has("autocmd")
+"    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.c,*.cpp :call CleanExtraSpaces()
+"endif
+
+" avoid adding \n at the end of the file (just for company purpose, it's actually a good practice to keep one)
+set nofixeol
+
 " some changes on noremap to navigate faster
 noremap H 5h
 noremap J 5j
@@ -171,9 +193,10 @@ set smarttab
 set expandtab
 set ai
 set si
+
 " indent for special file
-autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
+" autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent
+" autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
 
 set magic
 set mouse=a
