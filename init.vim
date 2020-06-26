@@ -50,9 +50,17 @@ map <F5> :call CurtineIncSw()<CR> " press F5 to toggle between xyz.cpp & xyz.h
 call coc#util#install() " remember to clone the coc.vim repo under plugin/ first, this line will prevent the JAVASCRIPT FILE NOT FOUND err
 set hidden
 set cmdheight=2
-set signcolumn=yes
 set updatetime=300
 set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -91,7 +99,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use ? to show documentation in preview window.
-nnoremap <silent> ? :call <SID>show_documentation()<CR>
+nnoremap <silent> D :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
@@ -100,6 +108,9 @@ function! s:show_documentation()
 		call CocAction('doHover')
 	endif
 endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 """""""""""""""""""""""""""""""""""""""
 "" tagbar
 " autocmd FileType c,cpp nested :TagbarOpen " open tagbar only for specific filetypes
@@ -140,6 +151,7 @@ imap jk <Esc>
 imap kj <Esc>
 " no backup files
 set nobackup
+set nowritebackup
 set autowrite
 set noswapfile
 " return to last edit position when opening files
