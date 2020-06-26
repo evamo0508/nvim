@@ -35,6 +35,14 @@ Dependency of coc.vim plugin.
 curl -sL install-node.now.sh | sh
 ```
 
+#### ack
+
+Dependency of ack.vim plugin.
+
+```
+sudo apt-get install ack-grep
+```
+
 ### Installing
 
 ```
