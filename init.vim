@@ -1,6 +1,8 @@
 set nocompatible
 " treat header files as c++ files for syntax highlighting
 autocmd BufEnter *.hpp,*.h :setlocal filetype=cpp
+" default <Leader> is backslash(\), but changing it to ',' would be more convenient
+let mapleader = ","
 """""""""""""""""""""""""""""""""""""
 " PLUGIN
 """"""""""""""""""""""""""""""""""""""
@@ -18,6 +20,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -117,15 +120,25 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""
 "" ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 " when the project is too big, ctrlp fails finding all documents
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=100
 " set this to 1 to set searching by filename (as opposed to full path) as the default
 let g:ctrlp_by_filename=1
-" set this to 1 to set regexp search as the default
-let g:ctrlp_regexp=1
 " when opening a file, if it's already open in a window somewhere, CtrlP will try to jump to it instead of opening a new instance
 let g:ctrlp_switch_buffer='Et'
+" CtrlP uses grep as default seraching tool, we can change it to ag for better performance
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files.
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " Ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 """""""""""""""""""""""""""""""""""""""
 "" vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -134,6 +147,12 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 """""""""""""""""""""""""""""""""""""""
 "" syntastic
+"""""""""""""""""""""""""""""""""""""""
+"" ack
+" not to jump to the first result automatically
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+let g:ackprg = 'ag --nogroup --nocolor --column'
 """""""""""""""""""""""""""""""""""""""
 " COLORS AND FONTS
 """""""""""""""""""""""""""""""""""""""
