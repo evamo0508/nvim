@@ -150,7 +150,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 """""""""""""""""""""""""""""""""""""""
 "" ack
 " not to jump to the first result automatically
-cnoreabbrev Ack Ack!
+"cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 """""""""""""""""""""""""""""""""""""""

@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
-let g:netrw_dirhist_2='/home/eva/my_dw/sdk/samples/framework'
-let g:netrw_dirhist_1='/home/eva/my_dw/sdk/src/dwvisualization/experimental/mapperception/mapstream'
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/eva/my_dw/sdk/src/dw/perception/mapping/mapstream/waitLines'
+let g:netrw_dirhist_5='/home/eva/my_dw/sdk/tools/experimental/mapperception'
+let g:netrw_dirhist_4='/home/eva/my_dw/sdk/tools/experimental/mapperception/common'
+let g:netrw_dirhist_3='/home/eva/my_dw/sdk/tools/experimental/mapperception/common/format'
+let g:netrw_dirhist_2='/home/eva/my_dw/sdk/tools/experimental/mapperception/common'
+let g:netrw_dirhist_1='/home/eva/my_dw/sdk/tools/experimental/mapperception'
+let g:netrw_dirhist_0='/home/eva/my_dw/sdk/tools/experimental/mapperception/map_fusion'
+let g:netrw_dirhist_9='/home/eva/my_dw/sdk/src/dw/perception/mapping/mapstream'
+let g:netrw_dirhist_8='/home/eva/my_dw/sdk/tools/experimental/mapperception/common/format'
+let g:netrw_dirhist_7='/home/eva/my_dw/sdk/tools/experimental/mapperception/map_fusion'
