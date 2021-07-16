@@ -44,10 +44,20 @@ sudo apt-get install exuberant-ctags
 
 #### nodejs
 
-Dependency of coc.vim plugin.
+Dependency of coc.nvim plugin.
 
 ```
 curl -sL install-node.now.sh/lts | sudo bash
+```
+
+#### yarn
+
+Another dependency of coc.nvim plugin.
+Note that if you `sudo apt install yarn`, Ubuntu will install `cmdtest` for you instead, but that is not what we want. If you accidentally ran this command, remove the package by `sudo apt remove cmdtest`.
+
+```
+sudo apt install yarnpkg
+sudo ln -s /usr/bin/yarnpkg /usr/bin/yarn
 ```
 
 #### ack

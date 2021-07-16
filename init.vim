@@ -13,7 +13,7 @@ Plugin 'VundleVim/Vundle.vim' " required
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'ericcurtin/CurtineIncSw.vim'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
@@ -50,7 +50,7 @@ let NERDTreeWinPos="left"
 map <F5> :call CurtineIncSw()<CR> " press F5 to toggle between xyz.cpp & xyz.h
 """"""""""""""""""""""""""""""""""""""""
 "" coc.vim
-call coc#util#install() " remember to clone the coc.vim repo under plugin/ first, this line will prevent the JAVASCRIPT FILE NOT FOUND err
+" call coc#util#install() " remember to clone the coc.vim repo under plugin/ first, this line will prevent the JAVASCRIPT FILE NOT FOUND err
 set hidden
 set cmdheight=2
 set updatetime=300
