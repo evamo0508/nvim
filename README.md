@@ -4,7 +4,22 @@ I switched from VIM to NEOVIM for a reason I already forgot. Anyway, I found thi
 
 ## Getting Started
 
-I am currently using this config in Ubuntu18.04, so I'm not sure will it work on other OS, but most of the time it should be similar.
+I am currently using this config in Ubuntu 18.04, so I'm not sure will it work on other OS, but most of the time it should be similar.
+
+2021.07.15 update: set up the same repo on Ubuntu 20.04 as well. It works fine.
+
+## Included Plugins
+
+* nerdtree
+* CurtineIncSw.vim
+* coc.vim
+* tagbar
+* ctrlp.vim
+* vim-airline
+* vim-airline-themes
+* vim-cpp-enhanced-highlight
+* syntastic
+* ack.vim
 
 ### Prerequisites
 
@@ -32,7 +47,7 @@ sudo apt-get install exuberant-ctags
 Dependency of coc.vim plugin.
 
 ```
-curl -sL install-node.now.sh | sh
+curl -sL install-node.now.sh/lts | sudo bash
 ```
 
 #### ack
@@ -45,9 +60,11 @@ sudo apt-get install ack-grep
 
 ### Installing
 
+The trick is to recursively clone the submodules in this repo as well. That way we ensure all the files are cloned altogether.
+
 ```
 cd ~/.config
-git clone https://github.com/evamo0508/nvim.git
+git clone --recurse-submodules https://github.com/evamo0508/nvim.git
 ```
 
 NEOVIM requires typing nvim to trigger, but we could do something to make our life easier, so that we could still type either vi or vim to trigger nvim.
