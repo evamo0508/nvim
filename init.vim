@@ -21,6 +21,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
 Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on
