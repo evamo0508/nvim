@@ -101,6 +101,15 @@ vi # enter NEOVIM
 
 Press ENTER and wait for a while to install every plugin.
 
+To enable c/c++ autocompletion support from `coc.vim`, do the following commands inside VIM:
+
+```
+:CocInstall coc-json
+:CocInstall coc-clangd
+```
+If it says you aren't able to install the language server, it's most probably you did not update the `coc.vim` submodule correctly.
+If you need other language support, visit `coc.vim` github page for more info.
+
 ## How To Use
 
 I'm too lazy to document all this down right now. Stay tuned lol.
